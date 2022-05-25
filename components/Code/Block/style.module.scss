@@ -1,0 +1,165 @@
+@import '~utils/index.scss';
+
+.wrapper {
+  position: relative;
+  min-height: 28px + (20px * 2); // opBtn height + padding top + padding bottom
+  line-height: 1.5;
+
+  p {
+    margin: 0;
+  }
+}
+
+.code {
+  font-family: monospace;
+  white-space: pre;
+  overflow-x: auto;
+  background-color: #FAFAFA !important;
+  border: 1px solid #E5E5E5;
+}
+
+.hasRunResult .codeSegment:last-child .code {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+@include pc {
+  .code {
+    border-top-width: 0;
+    border-bottom-width: 0;
+  }
+  .codeSegment:first-child .code {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-width: 1px;
+  }
+  .codeSegment:last-child .code {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-width: 1px;
+  }
+  .halfCode:not(.hasDoc) {
+    width: 50%;
+  }
+}
+
+@include mobile {
+  .code {
+    border-radius: 8px;
+  }
+}
+
+@include pc {
+  .codeSegment {
+    display: flex;
+    flex-direction: row;
+
+    .doc, .code {
+      flex: 1 1;
+    }
+
+    .doc {
+      padding: 0 40px 6px 0;
+    }
+
+    .code {
+      padding: 0 20px 6px;
+    }
+
+    &:first-child {
+      .doc, .code {
+        padding-top: 20px;
+      }
+    }
+
+    &:last-child {
+      .doc, .code {
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+  .hasDoc .codeSegment {
+    .doc, .code {
+      flex: 0 0 50%;
+    }
+  }
+}
+
+@include mobile {
+  .hasDoc {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #F0F0F0;
+
+    .code, .doc:not(:empty) {
+      margin-bottom: 1em;
+    }
+
+    .codeSegment:last-child .code {
+      margin-bottom: 0;
+    }
+  }
+
+  .code {
+    padding: 20px;
+  }
+}
+
+.ops {
+  display: flex;
+}
+
+.ops {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  visibility: hidden;
+}
+
+.wrapper:hover .ops {
+  visibility: visible;
+}
+
+.opBtn {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #666;
+  background-color: #FAFAFA;
+  border: 1px solid #BFBFBF;
+  border-radius: 4px;
+  transition: background-color .2s, color .2s, border-color .2s;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: #F5F5F5;
+  }
+
+  &:active:not(:disabled) {
+    background-color: #F0F0F0;
+  }
+
+  &.highlight {
+    color: #2C84FF;
+    border-color: #2C84FF;
+  }
+
+  + .opBtn {
+    margin-left: 16px;
+  }
+}
+
+@include pc {
+  .hasDoc .runResult {
+    margin-left: 50%;
+  }
+}

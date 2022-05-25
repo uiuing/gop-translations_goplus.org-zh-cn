@@ -1,0 +1,76 @@
+@import '~utils/index.scss';
+
+.wrapper {
+  color: #333333;
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #000;
+  }
+
+  h3 {
+    font-size: 20px;
+    line-height: 1.4;
+    margin: 24px 0 16px;
+  }
+
+  h4 {
+    font-size: 20px;
+    line-height: 1.4;
+    margin: 32px 0 24px;
+
+    @include mobile {
+      margin: 24px 0 16px;
+    }
+  }
+
+  h5 {
+    font-size: 20px;
+    line-height: 1.4;
+    margin: 16px 0 12px;
+
+    @include mobile {
+      font-size: 16px;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 16px 0;
+  }
+
+  ul {
+    margin: 24px 0 28px;
+
+    @include mobile {
+      padding-left: 16px;
+      margin: 16px 0 16px;
+    }
+  }
+
+  li {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 16px 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}

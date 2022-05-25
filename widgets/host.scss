@@ -1,0 +1,6 @@
+@import '~utils/index.scss';
+
+:host {
+  @include reset(inherit);
+  display: block;
+}

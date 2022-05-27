@@ -13,14 +13,14 @@ export default function Intro() {
       <div className={styles.goPlus}>
         <Logo width="120" height="100%" />
       </div>
-      <div className={styles.slogan}>The Go+ language for engineering, STEM education, and data science</div>
+      <div className={styles.slogan}>适用于工程、STEM 教育和数据科学的 Go+ 语言</div>
       <div className={styles.btnsWrap}>
         <a href="https://github.com/goplus/gop#how-to-install" className={styles.primaryBtn} rel="noopener">
           <IconDownload />
-          <span className={styles.installTxt}>Download Go+</span>
+          <span className={styles.installTxt}>下载 Go+</span>
         </a>
       </div>
-      <h2 className={styles.title}>Try Go+</h2>
+      <h2 className={styles.title}>试试 Go+</h2>
       <CodeExamples />
     </div>
   )

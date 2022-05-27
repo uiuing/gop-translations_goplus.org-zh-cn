@@ -10,27 +10,26 @@ export const navItems: NavItemInfo[] = [
   {
     children: '概述',
     href: 'https://cn.goplus.uiuing.com',
-    isBlank: false,
+    isBlank: false
   },
   {
     children: '教程',
     href: 'https://tutorial-cn.goplus.uiuing.com',
-    isBlank: false,
-
+    isBlank: false
   },
   {
     children: 'Playground',
     href: 'https://play.goplus.org',
-    isBlank: true,
+    isBlank: true
   },
   {
     children: '参与贡献',
     href: 'https://github.com/goplus/gop#contributing',
-    isBlank: true,
+    isBlank: true
   },
   {
     children: 'IDE 扩展',
     href: 'https://github.com/goplus/gop#ide-plugins',
-    isBlank: true,
+    isBlank: true
   }
 ]

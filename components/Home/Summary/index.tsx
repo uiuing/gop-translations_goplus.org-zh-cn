@@ -11,7 +11,7 @@ export default function Summary() {
 
   return (
     <div className={styles.section}>
-      <h2 className={styles.title}>Why Go+</h2>
+      <h2 className={styles.title}>为何是 Go+</h2>
       {isMobile ? <SummaryCollapse /> : <SummaryTabs />}
     </div>
   )

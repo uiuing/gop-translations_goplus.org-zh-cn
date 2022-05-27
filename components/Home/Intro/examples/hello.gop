@@ -1,7 +1,7 @@
 fields := [
-	"engineering",
-	"STEM education", 
-	"and data science",
+	"工程",
+	"STEM 教育",
+	"数据科学",
 ]
 
-println "The Go+ language for", fields.join(", ")
+println "适用于", fields.join("、"),"的 Go+ 语言"

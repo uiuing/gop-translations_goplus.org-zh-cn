@@ -1,38 +1,38 @@
-### Rational number: bigint, bigrat, bigfloat
+### 有理数：bigint, bigrat, bigfloat
 
-We introduce the rational number as native Go+ types. We use suffix `r` to denote rational literals. For example, (1r << 200) means a big int whose value is equal to 2<sup>200</sup>. And 4/5r means the rational constant 4/5.
+我们将有理数作为原生 Go+ 类型引入。我们使用后缀 `r` 来表示有理文字。例如，(1r << 200) 则表示一个 bigint，其值等于 2<sup>200</sup>，4/5r 表示有理常数 4/5。
 
 ```gop
 import "math/big"
 
-var a bigint = 1r << 65  // bigint, large than int64
+var a bigint = 1r << 65  // bigint, 类型长度大于 int64
 var b bigrat = 4/5r      // bigrat
 c := b - 1/3r + 3 * 1/2r // bigrat
 println a, b, c
 
-var x *big.Int = 1r << 65 // (1r << 65) is untyped bigint, and can be assigned to *big.Int
+var x *big.Int = 1r << 65 // (1r << 65) 是无类型的 bigint, 可以赋值给 *big.Int
 var y *big.Rat = 4/5r
 println x, y
 ```
 
-### Large integer: uint128, int128
+### 大整型: uint128, int128
 
 ```gop
 var x uint128 = 1 << 65
 var y = x + 1
-println x // output: 36893488147419103232
-println y // output: 36893488147419103233
+println x // 输出: 36893488147419103232
+println y // 输出: 36893488147419103233
 ```
 
-### Convert bool to number types
+### 布尔值转换为整型
 
 ```gop
-println int(true)       // output: 1
-println float64(true)   // output: 1
-println complex64(true) // output: (1+0i)
+println int(true)       // 输出: 1
+println float64(true)   // 输出: 1
+println complex64(true) // 输出: (1+0i)
 ```
 
-### Map literal
+### 集合字面量
 
 ```gop
 x := {"Hello": 1, "xsw": 3.4}   // map[string]float64
@@ -43,7 +43,7 @@ empty := {}                     // map[string]interface{}
 println x, y, z, empty
 ```
 
-### Slice literal
+### 切片字面量
 
 ```gop
 x := [1, 3.4]       // []float64
@@ -57,7 +57,7 @@ empty := []         // []interface{}
 println x, y, z, a, b, c, empty
 ```
 
-### Lambda expression
+### Lambda 表达式
 
 ```gop
 func plot(fn func(x float64) float64) {
@@ -72,7 +72,7 @@ plot x => x * x           // plot(func(x float64) float64 { return x * x })
 plot2 x => (x * x, x + x) // plot2(func(x float64) (float64, float64) { return x * x, x + x })
 ```
 
-### Deduce struct type
+### 推导结构类型
 
 ```gop
 type Config struct {
@@ -87,9 +87,9 @@ func foo(conf *Config) {
 foo {Dir: "/foo/bar", Level: 1}
 ```
 
-Here `foo {Dir: "/foo/bar", Level: 1}` is equivalent to `foo(&Config{Dir: "/foo/bar", Level: 1})`. However, you can't replace `foo(&Config{"/foo/bar", 1})` with `foo {"/foo/bar", 1}`, because it is confusing to consider `{"/foo/bar", 1}` as a struct literal.
+这里的 `foo {Dir: "/foo/bar", Level: 1}` 等价于 `foo(&Config{Dir: "/foo/bar", Level: 1})`。但是，您不能将 `foo(&Config{"/foo/bar", 1})` 替换为 `foo {"/foo/bar", 1}`，因为您不能把 `{"/foo/bar", 1}` 作为结构字面量来理解。
 
-You also can omit struct types in a return statement. For example:
+您还可以在 return 语句中省略结构类型。例如:
 
 ```gop
 type Result struct {
@@ -104,7 +104,7 @@ println foo()
 ```
 
 
-### List comprehension
+### 列表推导
 
 ```gop
 a := [x*x for x <- [1, 3, 5, 7, 11]]
@@ -122,7 +122,7 @@ z := {v: k for k, v <- {1: "Hello", 3: "Hi", 5: "xsw", 7: "Go+"}, k > 3}
 println a, b, c, d, arr, e, x, y, z
 ```
 
-### Select data from a collection
+### 从集合中选择数据
 
 ```gop
 type student struct {
@@ -135,11 +135,11 @@ students := [student{"Ken", 90}, student{"Jason", 80}, student{"Lily", 85}]
 unknownScore, ok := {x.score for x <- students, x.name == "Unknown"}
 jasonScore := {x.score for x <- students, x.name == "Jason"}
 
-println unknownScore, ok // output: 0 false
-println jasonScore // output: 80
+println unknownScore, ok // 输出: 0 false
+println jasonScore // 输出: 80
 ```
 
-### Check if data exists in a collection
+### 检查数据是否存在于集合中
 
 ```gop
 type student struct {
@@ -149,13 +149,13 @@ type student struct {
 
 students := [student{"Ken", 90}, student{"Jason", 80}, student{"Lily", 85}]
 
-hasJason := {for x <- students, x.name == "Jason"} // is any student named Jason?
-hasFailed := {for x <- students, x.score < 60}     // is any student failed?
+hasJason := {for x <- students, x.name == "Jason"} // 是否有学生叫 Jason？
+hasFailed := {for x <- students, x.score < 60}     // 是否有学生不合格？
 
 println hasJason, hasFailed
 ```
 
-### For loop
+### For 循环
 
 ```gop
 sum := 0
@@ -167,7 +167,7 @@ println sum
 ```
 
 
-### Range expression (`start:end:step`)
+### Range 表达式 (`start:end:step`)
 
 ```gop
 for i <- :10 {
@@ -212,7 +212,7 @@ for k, v <- foo {
 println {v: k for k, v <- foo}
 ```
 
-**Note: you can't use break/continue or return statements in for range of udt.Gop_Enum(callback).**
+**注意：对于 udt.Gop_Enum（回调）的范围，无法使用 break/continue 或 return 语句。**
 
 
 ### For range of UDT2
@@ -247,7 +247,7 @@ for k, v <- foo {
 println {v: k for k, v <- foo}
 ```
 
-### Overload operators
+### 重载运算符
 
 ```gop
 import "math/big"
@@ -279,17 +279,17 @@ println -a
 ```
 
 
-### Error handling
+### 异常处理
 
-We reinvent the error handling specification in Go+. We call them `ErrWrap expressions`:
+我们在Go+中重塑了错误处理规范。 我们称其为 `ErrWrap expressions`:
 
 ```gop|raw
-expr! // panic if err
-expr? // return if err
-expr?:defval // use defval if err
+expr! // 如果错误，则主动抛出错误
+expr? // 如果错误，则返回错误
+expr?:defval // 如果错误，则返回defval
 ```
 
-How to use them? Here is an example:
+如何使用它们？以下是一个例子：
 
 ```gop
 import (
@@ -312,7 +312,7 @@ println `add("10", "abc"):`, sum, err
 println `addSafe("10", "abc"):`, addSafe("10", "abc")
 ```
 
-The output of this example is:
+这个例子的输出是：
 
 ```gop|raw
 add("100", "23"): 123
@@ -325,16 +325,16 @@ main.add("10", "abc")
 addSafe("10", "abc"): 10
 ```
 
-Compared to corresponding Go code, It is clear and more readable.
+与相应的 Go 代码相比，它更清晰、更具可读性。
 
-And the most interesting thing is, the return error contains the full error stack. When we got an error, it is very easy to position what the root cause is.
+最有趣的是，返回错误包含完整的错误堆栈。当我们遇到错误时，很容易定位根本原因是什么。
 
-How these `ErrWrap expressions` work? See [Error Handling](https://github.com/goplus/gop/wiki/Error-Handling) for more information.
+这些 `ErrWrap expressions` 如何工作的？有关更多信息，请参阅 [错误处理](https://github.com/goplus/gop/wiki/Error-Handling)。
 
 
 ### Auto property
 
-Let's see an example written in Go+:
+让我们看一个用 Go+ 编写的例子：
 
 ```gop
 import "gop/ast/goptest"
@@ -344,9 +344,9 @@ doc := goptest.New(`... Go+ code ...`)!
 println doc.Any().FuncDecl().Name()
 ```
 
-In many languages, there is a concept named `property` who has `get` and `set` methods.
+在许多语言中，有一个名为 `property` 的概念，它具有 `get` 和 `set` 方法。
 
-Suppose we have `get property`, the above example will be:
+假设我们有 `get property`，上面的例子将是：
 
 ```gop
 import "gop/ast/goptest"
@@ -356,12 +356,11 @@ doc := goptest.New(`... Go+ code ...`)!
 println doc.any.funcDecl.name
 ```
 
-In Go+, we introduce a concept named `auto property`. It is a `get property`, but is implemented automatically. If we have a method named `Bar()`, then we will have a `get property` named `bar` at the same time.
-
+在 Go+ 中，我们引入了一个名为 `auto property` 的概念。它是一个 `get property`，但会自动实现。如果我们有一个名为 `Bar()` 的方法，那么我们将同时拥有一个名为 `bar` 的 `get property`。
 
 ### Unix shebang
 
-You can use Go+ programs as shell scripts now. For example:
+您现在可以将 Go+ 程序用作 shell 脚本。例如：
 
 ```gop
 #!/usr/bin/env -S gop run
@@ -382,4 +381,4 @@ println [k for k, _ <- m]
 println [v for v <- m]
 ```
 
-Go [20-Unix-Shebang/shebang](https://github.com/goplus/tutorial/blob/main/20-Unix-Shebang/shebang) to get the source code.
+访问 [20-Unix-Shebang/shebang](https://github.com/goplus/tutorial/blob/main/20-Unix-Shebang/shebang) 来获取源代码。

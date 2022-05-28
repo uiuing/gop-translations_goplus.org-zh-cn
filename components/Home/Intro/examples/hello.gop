@@ -4,4 +4,4 @@ fields := [
 	"数据科学",
 ]
 
-println "适用于", fields.join("、"),"的 Go+ 语言"
+println "适用于", fields.join("、"), "的 Go+ 语言"

@@ -32,7 +32,7 @@ export default function PcFeatures() {
   return (
     <featuresCtx.Provider value={ctxValue}>
       <div className={styles.section}>
-        <h2 className={styles.title}>Go+ features</h2>
+        <h2 className={styles.title}>Go+ 的特点</h2>
         <div className={styles.content}>
           <Aside />
           <div className={styles.features}>

@@ -17,7 +17,7 @@ const components = {
 export default function MobileFeatures() {
   return (
     <section className={styles.wrapper}>
-      <h2 className={styles.title}>Go+ features</h2>
+      <h2 className={styles.title}>Go+ 的特点</h2>
       <TextWrapper>
         <ReactMarkdown
           components={components}
